@@ -42,5 +42,5 @@ let main args =
         let doc = new XmlDocument()
         in doc.LoadXml(client.DownloadString("http://www.speedtest.net/speedtest-config.php"));
             let config = new Configuration(doc);
-            in Console.WriteLine(config.Times)
+            in printfn "%A" config.Times
     0
