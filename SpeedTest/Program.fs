@@ -1,4 +1,6 @@
-﻿open System
+﻿module SpeedTest
+
+open System
 open System.Net
 open System.Xml
 
