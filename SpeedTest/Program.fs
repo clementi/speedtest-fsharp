@@ -15,9 +15,9 @@ type Configuration (document: XmlDocument) =
         let attrs = client.Attributes
         in
         {
-            Ip = attrs.ItemOf("ip").Value;
-            Lat = attrs.ItemOf("lat").Value |> Double.Parse;
-            Lon = attrs.ItemOf("lon").Value |> Double.Parse;
+            Ip = attrs.["ip"].Value;
+            Lat = attrs.["lat"].Value |> Double.Parse;
+            Lon = attrs.["lon"].Value |> Double.Parse;
             Isp = this.GetIsp(attrs.["isp"].Value, attrs.["isprating"].Value, attrs.["ispdlavg"].Value, attrs.["ispulavg"].Value);
             Rating = attrs.["rating"].Value |> Double.Parse
         }
