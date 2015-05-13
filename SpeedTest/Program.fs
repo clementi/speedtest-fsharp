@@ -34,6 +34,20 @@ type Configuration (document: XmlDocument) =
         |> Seq.map (fun time -> time.InnerText)
         |> Seq.toList
 
+let radians angleDeg = angleDeg * Math.PI / 180.0
+
+let square x = x * x
+
+let distance origin dest =
+    let lat1, lon1 = origin
+    let lat2, lon2 = dest
+    let radius = 6378.0 // km
+    let dlat = radians(lat2 - lat1)
+    let dlon = radians(lon2 - lon1)
+    let a = square (sin (dlat / 2.0)) + cos (radians lat1) * cos (radians lat2) * square (sin (dlon / 2.0))
+    let c = 2.0 * atan2 (sqrt a) (sqrt (1.0 - a))
+    radius * c
+
 [<EntryPoint>]
 let main args =
     use client = new WebClient()
